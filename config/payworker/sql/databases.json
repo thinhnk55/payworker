@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "name": "payworker",
+        "jdbcUrl_": "jdbc:mariadb://103.145.63.98:3306/payworker",
+        "jdbcUrl": "jdbc:mariadb://103.145.63.98:3306/payworker",
+        "dataSource.database": "payworker",
+        "dataSource.user": "payworker",
+        "dataSource.password": "POQM@)$(*s334sllk"
+    }
+]

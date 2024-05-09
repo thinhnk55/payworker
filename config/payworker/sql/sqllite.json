@@ -1,0 +1,4 @@
+{
+  "name": "payworker",
+  "jdbcUrl": "jdbc:sqlite:data/sqllite/payworker.db"
+}

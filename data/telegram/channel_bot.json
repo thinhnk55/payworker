@@ -1,0 +1,11 @@
+{
+  "name": "pay_worker_bot",
+  "token": "7009716269:AAEAurFx4E7DHc4r4I7dRbo0g8wwQx4HQTQ",
+  "channel_link": "https://t.me/+dNq8a3-5sLI5YjI1",
+  "channel_id": -1002022016585,
+  "modules": {
+    "admin": {
+      "language": "data/telegram/language/admin.json"
+    }
+  }
+}
