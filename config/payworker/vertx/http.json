@@ -1,7 +1,7 @@
 {
   "name": "payworker",
   "url_prefix": "/pw",
-  "http_port": 8282,
-  "websocket_port": 8585,
+  "http_port": 6161,
+  "websocket_port": 6767,
   "internal_token": "pw-SLQOP4556acoqwke"
 }

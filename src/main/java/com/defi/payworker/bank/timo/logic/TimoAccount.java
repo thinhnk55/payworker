@@ -1,5 +1,6 @@
 package com.defi.payworker.bank.timo.logic;
 
+import com.defi.util.json.GsonUtil;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -44,5 +45,17 @@ public class TimoAccount {
             JsonObject notification = json.getAsJsonObject();
             notification.addProperty("last", last);
         }
+    }
+
+    public JsonObject toJsonObject() {
+        JsonObject json = new JsonObject();
+        json.addProperty("username", username);
+        json.addProperty("password", "***");
+        json.addProperty("account_number", account_number);
+        json.addProperty("account_owner", account_owner);
+        json.add("other", other);
+        json.addProperty("state", state);
+        json.addProperty("failure", failure);
+        return json;
     }
 }

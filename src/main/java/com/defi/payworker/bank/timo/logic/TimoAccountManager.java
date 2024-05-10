@@ -3,6 +3,7 @@ package com.defi.payworker.bank.timo.logic;
 import com.defi.common.SimpleResponse;
 import com.defi.payworker.bank.timo.service.ITimoAccountervice;
 import com.defi.payworker.bank.timo.service.TimoConstant;
+import com.defi.telegram.admin.AdminMessage;
 import com.defi.util.log.DebugLogger;
 import com.defi.util.string.StringUtil;
 import com.google.gson.JsonArray;
@@ -69,6 +70,11 @@ public class TimoAccountManager {
         }
         accounts.put(account.username, account);
         DebugLogger.logger.info("onLogin {}", account.username);
+        String message = new StringBuilder()
+                .append("Account Login: ")
+                .append(account.username)
+                .toString();
+        AdminMessage.send_notification(message);
     }
 
     private void updateAccountNumber(TimoAccount account) {
@@ -109,6 +115,11 @@ public class TimoAccountManager {
         if(account.failure > 3) {
             accounts.remove(account.username);
             DebugLogger.logger.info("onFailure {}", account.username);
+            String message = new StringBuilder()
+                    .append("Account Failure: ")
+                            .append(account.username)
+                                    .toString();
+            AdminMessage.send_notification(message);
         }
     }
 }

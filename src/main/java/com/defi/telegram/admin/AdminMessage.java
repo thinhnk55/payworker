@@ -26,4 +26,18 @@ public class AdminMessage {
                 "hh:mm:ss dd/mm/yyy","Asia/Ho_Chi_Minh"));
         CommonMessage.sendMessage(bot, chat_id, content, ParseMode.MarkdownV2);
     }
+
+    public static void send_notification(String message) {
+        String content = AdminLanguage.getEmojiMessage("vi", AdminLanguage.notification);
+        content = new StringBuilder()
+                .append(content)
+                .append(message)
+                .toString();
+        TelegramBot bot = TelegramChannelManager.instance().getTelegramBot();
+        long[] list_chat_id = AdminModule.instance().admin_list;
+        for(int i = 0; i < list_chat_id.length; i++){
+            long chat_id = list_chat_id[i];
+            CommonMessage.sendMessage(bot, chat_id, content);
+        }
+    }
 }

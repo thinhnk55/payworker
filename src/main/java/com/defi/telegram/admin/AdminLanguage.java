@@ -4,6 +4,7 @@ import com.defi.telegram.common.LanguageMessage;
 
 public class AdminLanguage {
     public static final String donation_update = "donation_update";
+    public static final String notification = "notification";
     public static LanguageMessage message;
 
     public static void init(String configFile){

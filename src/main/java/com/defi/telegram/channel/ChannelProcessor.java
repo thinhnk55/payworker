@@ -24,8 +24,8 @@ public class ChannelProcessor implements ITelegramProcessor {
         modules = new LinkedList<>();
         JsonObject adminConfig = config.getAsJsonObject("modules")
                 .getAsJsonObject("admin");
-        BaseModule adminModule = new AdminModule(adminConfig);
-        modules.add(adminModule);
+        AdminModule.instance().init(adminConfig);
+        modules.add(AdminModule.instance());
     }
     @Override
     public void process(TelegramBot bot, Update update) {

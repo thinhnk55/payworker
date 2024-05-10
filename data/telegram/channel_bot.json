@@ -5,7 +5,8 @@
   "channel_id": -1002022016585,
   "modules": {
     "admin": {
-      "language": "data/telegram/language/admin.json"
+      "language": "data/telegram/language/admin.json",
+      "list": [422043718]
     }
   }
 }

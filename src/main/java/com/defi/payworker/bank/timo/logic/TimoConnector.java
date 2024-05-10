@@ -161,4 +161,23 @@ public class TimoConnector {
             return SimpleResponse.createResponse(1);
         }
     }
+    public static int checkNotification(String token) {
+        try{
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Token", token);
+            try (Response response = OkHttpUtil.getFullResponse(TimoConfig.URL_NOTIFICATION_CHECK, headers)) {
+                if (response != null && response.code() == 200) {
+                    String data = response.body().string();
+                    JsonObject jsonResponse = GsonUtil.toJsonObject(data);
+                    //Lay so luong thong bao moi
+                    int numberOfNotifications = jsonResponse.get("data").getAsJsonObject().get("numberOfNotification").getAsInt();
+                    return numberOfNotifications;
+                }
+            }
+            return -1;
+        }catch (Exception e){
+            DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
+            return -1;
+        }
+    }
 }

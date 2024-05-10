@@ -4,6 +4,7 @@
     "vi"
   ],
   "vi": {
-    "donation_update": ":gift: LƯỢT ỦNG HỘ MỚI\nNgười ủng hộ: *@SENDER*\nSố tiền: *@AMOUNT*\nNgười Nhận: *@RECEIVER*\nLời nhắn: *@MESSAGE*\nThời Gian: *@TIME*"
+    "donation_update": ":gift: LƯỢT ỦNG HỘ MỚI\nNgười ủng hộ: *@SENDER*\nSố tiền: *@AMOUNT*\nNgười Nhận: *@RECEIVER*\nLời nhắn: *@MESSAGE*\nThời Gian: *@TIME*",
+    "notification": ":loudspeaker: Thông báo:\n"
   }
 }
