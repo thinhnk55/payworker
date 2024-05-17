@@ -31,7 +31,11 @@ public class DonationService implements IDonationService{
                 + ")").replace("table_name", table);
         String index1 = "CREATE INDEX table_name_create_time_index ON table_name (create_time ASC)"
                 .replace("table_name", table);
-        bridge.createTable(table, createTableSQL, index1);
+        String index2 = "CREATE INDEX table_name_receiver_index ON table_name (receiver ASC)"
+                .replace("table_name", table);
+        String index3 = "CREATE INDEX table_name_amount_index ON table_name (amount ASC)"
+                .replace("table_name", table);
+        bridge.createTable(table, createTableSQL, index1, index2, index3);
     }
 
     @Override
@@ -83,6 +87,42 @@ public class DonationService implements IDonationService{
                 return SimpleResponse.createResponse(10);
             }
             return SimpleResponse.createResponse(0, array);
+        }catch (Exception e){
+            DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
+            return SimpleResponse.createResponse(1);
+        }
+    }
+
+    @Override
+    public JsonObject listDonation(String receiver, long limit, long offset) {
+        try{
+            String query = new StringBuilder("SELECT id, receiver, hidden_sender, amount, message, create_time FROM ")
+                    .append(table)
+                    .append(" WHERE receiver = ? ORDER BY id DESC LIMIT ? OFFSET ?")
+                    .toString();
+            JsonArray array = bridge.query(query, receiver, limit, offset);
+            if(array.size() == 0){
+                return SimpleResponse.createResponse(10);
+            }
+            return SimpleResponse.createResponse(0, array);
+        }catch (Exception e){
+            DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
+            return SimpleResponse.createResponse(1);
+        }
+    }
+
+    @Override
+    public JsonObject summary(String receiver) {
+        try{
+            String query = new StringBuilder("SELECT receiver, COUNT(id) as count, SUM(amount) as total, MAX(amount) as max FROM ")
+                    .append(table)
+                    .append(" WHERE receiver = ?")
+                    .toString();
+            JsonObject json = bridge.queryOne(query, receiver);
+            if(json == null){
+                return SimpleResponse.createResponse(10);
+            }
+            return SimpleResponse.createResponse(0, json);
         }catch (Exception e){
             DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
             return SimpleResponse.createResponse(1);

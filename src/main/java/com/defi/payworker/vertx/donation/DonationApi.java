@@ -12,6 +12,9 @@ public class DonationApi {
         router.get(PayWorkerVertx.instance().getPath("/donation/list"))
                 .handler(AuthRouter::internal)
                 .handler(DonationRouter::listDonation);
+        router.get(PayWorkerVertx.instance().getPath("/donation/summary"))
+                .handler(AuthRouter::internal)
+                .handler(DonationRouter::summaryDonation);
         router.get(PayWorkerVertx.instance().getPath("/donation/top"))
                 .handler(AuthRouter::internal)
                 .handler(DonationRouter::topDonation);

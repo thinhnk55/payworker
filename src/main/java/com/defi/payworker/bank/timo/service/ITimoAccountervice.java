@@ -11,4 +11,6 @@ public interface ITimoAccountervice {
     JsonObject updateOther(String username, JsonObject other);
 
     JsonObject updateBankInfo(String username, String accountOwner, String accountNumber);
+
+    JsonObject updateState(String username, int stateNotCommit);
 }

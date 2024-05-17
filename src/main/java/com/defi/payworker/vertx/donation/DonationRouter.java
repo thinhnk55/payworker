@@ -19,11 +19,17 @@ public class DonationRouter {
                 }
                 long page = Long.parseLong(rc.request().getParam("page", "0"));
                 long limit = Long.parseLong(rc.request().getParam("limit", "10"));
-                if(limit > 100){
+                String receiver = rc.request().getParam("receiver", "NA");
+                if(limit > 100){.,m 0
                     limit = 10;
                 }
                 long offset = page*limit;
-                String response = DonationManager.instance().service.listDonation(limit, offset).toString();
+                String response;
+                if(receiver.equals("NA")) {
+                    response = DonationManager.instance().service.listDonation(limit, offset).toString();
+                }else{
+                    response = DonationManager.instance().service.listDonation(receiver, limit, offset).toString();
+                }
                 rc.response().end(response);
                 ApiCached.instance().setCached(uri, response, 5000);
             }catch (Exception e){
@@ -53,6 +59,29 @@ public class DonationRouter {
             String response = DonationManager.instance().service.topDonation(from, limit).toString();
             rc.response().end(response);
             ApiCached.instance().setCached(uri, response, 5000);
+        }catch (Exception e){
+            DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
+            rc.response().end(SimpleResponse.createResponse(1).toString());
+        }
+    }
+
+    public static void summaryDonation(RoutingContext rc) {
+        try{
+            try{
+                String uri = rc.request().uri();
+                String cached = ApiCached.instance().getCached(uri);
+                if(cached != null){
+                    rc.response().end(cached);
+                    return;
+                }
+                String receiver = rc.request().getParam("receiver");
+                String response = DonationManager.instance().service.summary(receiver).toString();
+                rc.response().end(response);
+                ApiCached.instance().setCached(uri, response, 5000);
+            }catch (Exception e){
+                DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
+                rc.response().end(SimpleResponse.createResponse(1).toString());
+            }
         }catch (Exception e){
             DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
             rc.response().end(SimpleResponse.createResponse(1).toString());

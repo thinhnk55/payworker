@@ -145,4 +145,23 @@ public class TimoAccountervice implements ITimoAccountervice {
             return SimpleResponse.createResponse(1);
         }
     }
+
+    @Override
+    public JsonObject updateState(String username, int state) {
+        try {
+            String query = new StringBuilder()
+                    .append("UPDATE ")
+                    .append(table)
+                    .append(" SET state = ? WHERE username = ?")
+                    .toString();
+            int x = bridge.update(query, state, username);
+            if(x == 0){
+                return SimpleResponse.createResponse(10);
+            }
+            return SimpleResponse.createResponse(0);
+        }catch (Exception e){
+            DebugLogger.logger.error(ExceptionUtils.getStackTrace(e));
+            return SimpleResponse.createResponse(1);
+        }
+    }
 }

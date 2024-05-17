@@ -6,4 +6,8 @@ public interface IDonationService {
     JsonObject createDonation(String receiver, String sender, String hidden_sender, long amount, String message);
     JsonObject listDonation(long limit, long offset);
     JsonObject topDonation(long from_timestamp, long limit);
+
+    JsonObject listDonation(String receiver, long limit, long offset);
+
+    JsonObject summary(String receiver);
 }

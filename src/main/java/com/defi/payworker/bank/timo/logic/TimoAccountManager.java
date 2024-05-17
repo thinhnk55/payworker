@@ -114,7 +114,7 @@ public class TimoAccountManager {
         account.failure++;
         if(account.failure > 3) {
             accounts.remove(account.username);
-            DebugLogger.logger.info("onFailure {}", account.username);
+            service.updateState(account.username, TimoConstant.STATE_NOT_COMMIT);
             String message = new StringBuilder()
                     .append("Account Failure: ")
                             .append(account.username)
