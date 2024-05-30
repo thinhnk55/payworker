@@ -10,10 +10,9 @@ public class TimoUtil {
     public static JsonObject generateHeader(){
         JsonObject json = new JsonObject();
         String uuid = StringUtil.generateUUID();
-        String appVersion = "214";
         String client = new StringBuilder()
                 .append(":WEB:WEB:")
-                .append(appVersion)
+                .append(TimoConfig.AAP_VERSION)
                 .append(":WEB:desktop:chrome")
                 .toString();
         String xTimoDevicereg = new StringBuilder(StringUtil.generateUUID()).append(client).toString();
@@ -22,7 +21,7 @@ public class TimoUtil {
                 new StringBuilder()
                         .append("WEB.")
                         .append(uuid).append(".")
-                        .append(appVersion)
+                        .append(TimoConfig.AAP_VERSION)
                         .toString()
         );
         String gofsContextId =  new StringBuilder()

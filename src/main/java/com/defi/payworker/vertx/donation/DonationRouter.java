@@ -20,7 +20,7 @@ public class DonationRouter {
                 long page = Long.parseLong(rc.request().getParam("page", "0"));
                 long limit = Long.parseLong(rc.request().getParam("limit", "10"));
                 String receiver = rc.request().getParam("receiver", "NA");
-                if(limit > 100){.,m 0
+                if(limit > 100){
                     limit = 10;
                 }
                 long offset = page*limit;

@@ -47,6 +47,7 @@ public class TimoAccountManager {
         int error = response.get("e").getAsInt();
         if(error == 0){
             JsonObject timoResponse = response.getAsJsonObject("d");
+            other.add("header", header);
             other.add("login", timoResponse);
             data.addProperty("state", TimoConstant.STATE_COMMIT);
             service.updateLogin(username, other, TimoConstant.STATE_COMMIT);
@@ -56,6 +57,7 @@ public class TimoAccountManager {
         }
         if(error == 10){
             JsonObject timoResponse = response.getAsJsonObject("d");
+            other.add("header", header);
             other.add("login", timoResponse);
             data.addProperty("state", TimoConstant.STATE_NOT_COMMIT);
             service.updateLogin(username,  other, TimoConstant.STATE_NOT_COMMIT);
