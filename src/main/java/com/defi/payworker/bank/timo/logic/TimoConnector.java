@@ -33,12 +33,11 @@ public class TimoConnector {
                     if (res.get("code").getAsInt() == ERROR_TIMO_ACCOUNT_NOT_COMMIT) {
                         JsonObject data = res.get("data").getAsJsonObject();
                         return SimpleResponse.createResponse(10, data);
-                    }
+                    }else
                     if (res.get("code").getAsInt() == CODE_SUCCESS) {
                         JsonObject data = res.get("data").getAsJsonObject();
                         return SimpleResponse.createResponse(0, data);
-                    }
-                    if (res.get("code").getAsInt() == ERROR_UNAUTHORIZED) {
+                    }else {
                         return SimpleResponse.createResponse(11);
                     }
                 }
@@ -125,7 +124,7 @@ public class TimoConnector {
             Map<String, String> headers = new HashMap<>();
             headers.put("Token", token);
             try(Response response = OkHttpUtil.getFullResponse(TimoConfig.URL_NOTIFICATION_EN, headers)) {
-                if (response.code() == 200) {
+                if (response != null && response.code() == 200) {
                     String data = response.body().string();
                     response.body().close();
                     JsonObject jsonResponse = GsonUtil.toJsonObject(data);

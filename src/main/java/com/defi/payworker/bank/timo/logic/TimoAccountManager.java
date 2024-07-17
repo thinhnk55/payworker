@@ -63,7 +63,14 @@ public class TimoAccountManager {
             service.updateLogin(username,  other, TimoConstant.STATE_NOT_COMMIT);
             return SimpleResponse.createResponse(10);
         }
-        return SimpleResponse.createResponse(11);
+        if(error == 11){
+            header = TimoUtil.generateHeader();
+            other.add("header", header);
+            data.addProperty("state", TimoConstant.STATE_NOT_COMMIT);
+            service.updateLogin(username,  other, TimoConstant.STATE_NOT_COMMIT);
+            return SimpleResponse.createResponse(11);
+        }
+        return SimpleResponse.createResponse(12);
     }
 
     private void onLogin(TimoAccount account) {

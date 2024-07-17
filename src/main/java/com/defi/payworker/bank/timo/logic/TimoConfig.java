@@ -1,9 +1,10 @@
 package com.defi.payworker.bank.timo.logic;
 
 public class TimoConfig {
-    public static String AAP_VERSION = "218";
+    public static String AAP_VERSION = "226";
     public static final int CODE_SUCCESS = 200;
     public static final int ERROR_TIMO_ACCOUNT_NOT_COMMIT = 6001;
+    public static final int ERROR_TIMO_INVALID_APP_VERSION = 6777;
     public static final int ERROR_UNAUTHORIZED = 401;
     public static final int ERROR_OTP_INVALID = 8102;
     public static final int ERROR_OTP_EXPIRED = 8106;
